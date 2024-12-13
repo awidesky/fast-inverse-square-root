@@ -1,6 +1,3 @@
-/build/
-/testbuild/
-
 # Created by https://www.toptal.com/developers/gitignore/api/c,visualstudiocode,macos,linux
 # Edit at https://www.toptal.com/developers/gitignore?templates=c,visualstudiocode,macos,linux
 
@@ -126,3 +123,9 @@ Temporary Items
 .ionide
 
 # End of https://www.toptal.com/developers/gitignore/api/c,visualstudiocode,macos,linux
+
+/build/*
+/testbuild/*
+
+!/build/libfastsqrt.so
+!/build/libfastsqrt.a
