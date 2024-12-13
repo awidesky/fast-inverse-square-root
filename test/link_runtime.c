@@ -2,21 +2,21 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "../src/fast_invsqrt.h"
+#include "../src/fast_sqrt.h"
 
-float (*inv_sqrt_f) (float);
-double (*inv_sqrt_d) (double);
+float (*fast_sqrt_f) (float);
+double (*fast_sqrt_d) (double);
 
 static void* handle;
 void setup() {
   char* error;
-  handle = dlopen("../build/libfastInvsqrt.so", RTLD_LAZY);
+  handle = dlopen("../build/libfastsqrt.so", RTLD_LAZY);
   if (!handle) {
     fprintf(stderr, "%s\n", dlerror());
     exit(1);
   }
-  inv_sqrt_f = dlsym(handle, "inv_sqrtf");
-  inv_sqrt_d = dlsym(handle, "inv_sqrtd");
+  fast_sqrt_f = dlsym(handle, "fast_sqrtf");
+  fast_sqrt_d = dlsym(handle, "fast_sqrtd");
   if ((error = dlerror()) != NULL) {
     fprintf(stderr, "%s\n", error);
     exit(1);

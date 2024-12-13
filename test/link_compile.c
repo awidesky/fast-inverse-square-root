@@ -1,7 +1,7 @@
-#include "../src/fast_invsqrt.h"
+#include "../src/fast_sqrt.h"
 
-float (*inv_sqrt_f) (float) = inv_sqrtf;
-double (*fast_sqrt_d) (double) = inv_sqrtd;
+float (*fast_sqrt_f) (float) = fast_sqrtf;
+double (*fast_sqrt_d) (double) = fast_sqrtd;
 
 /**
  * Nothing to do in runtime. Linking is done in compile time.

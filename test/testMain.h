@@ -8,10 +8,13 @@ void setup();
 /** cleanup function for each link_*.c */
 void cleanup();
 
-extern float (*inv_sqrt_f) (float);
-extern double (*inv_sqrt_d) (double);
+extern float (*fast_sqrt_f) (float);
+extern double (*fast_sqrt_d) (double);
 
 #include <stdio.h>
+#include <math.h>
+#include <time.h>
+#include <stdint.h>
 
 int main() {
     setup();
@@ -21,26 +24,51 @@ int main() {
         printf("(1) Input a float number. To quit, enter a number equal or less than 0 : ");
         if(scanf("%f", &f) == EOF) break;
         if(f <= 0) break;
-        printf("1/sqrt(%f) == %f\n", f, inv_sqrt_f(f));
+        printf("sqrt(%f) == %f\n", f, fast_sqrt_f(f));
     }
+    printf("\n");
+
     double d = 1.0;
     while(1) {
         printf("(2) Input a double number. To quit, enter a number equal or less than 0 : ");
         if(scanf("%lf", &d) == EOF) break;
         if(d <= 0) break;
-        printf("1/sqrt(%lf) == %lf\n", d, inv_sqrt_d(d));
+        printf("sqrt(%lf) == %lf\n", d, fast_sqrt_d(d));
+    }
+    printf("\n");
+
+    float start, end;
+    printf("(3) SpeedTest. it'll loop test sqrt and fast_sqrt with every\n");
+    printf("(3) floating point numbers in range of start <= f < end will tested.\"\n");
+    printf("(3) Please enter start, end : ");
+    int scanret = scanf("%f %f", &start, &end);
+    if(scanret == EOF || !(start < end)) {
+        printf("(3) Invalid input!\n");
+        return 1;
     }
 
-    float x, y, z;
-    while(1) {
-        printf("(3) Input three float, and I'll normalize the vector.\n");
-        printf("(3) To quit, enter either of 3 numbers equal or less than 0 : ");
-        if(scanf("%f %f %f", &x, &y, &z) == EOF) break;
-        if(x <= 0 || y <= 0 || z <= 0) break;
-        float norm = inv_sqrt_f(x*x + y*y + z*z);
-        printf("original   vector: (%f, %f, %f)\n", x, y, z);
-        printf("normalized vector: (%f, %f, %f)\n", x/norm, y/norm, z/norm);
+    clock_t begin, timeend;
+    float max; // for test
+    begin = clock();
+    for (int32_t i = *(int32_t*) &start ; i < *(int32_t*) &end ; i++) {
+        float re = sqrtf(*(float*) &i);
+		if(max < re) max = re;
     }
+    timeend = clock();
+    printf("%f\n", max);
+    double t1 = (double)(timeend - begin) / CLOCKS_PER_SEC;
+
+    begin = clock();
+    for (int32_t i = *(int32_t*) &start ; i < *(int32_t*) &end ; i++) {
+        float re = fast_sqrt_f(*(float*) &i);
+		if(max < re) max = re;
+    }
+    timeend = clock();
+    printf("%f\n", max);
+    double t2 = (double)(timeend - begin) / CLOCKS_PER_SEC;
+
+    printf("math.h sqrtf : %lfseconds\n", t1);
+    printf("fast   sqrtf : %lfseconds\n", t2);
 
     cleanup();
     return 0;
