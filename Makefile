@@ -31,6 +31,7 @@ $(TESTBUILD)link_compile: $(TEST)link_compile.c $(TEST)testMain.h $(BUILD)fast_s
 
 $(TESTBUILD)link_runtime: $(TEST)link_runtime.c $(TEST)testMain.h $(BUILD)libfastsqrt.so
 	gcc $(TEST)link_runtime.c -o $@ -ldl -lm
+	cp $(BUILD)libfastsqrt.so $(TESTBUILD)libfastsqrt.so
 
 clean:
 	rm -f $(BUILD)*
