@@ -1,4 +1,4 @@
-#ifndef FAST_SQRT_h
+#ifndef FAST_SQRT_H
 #define FAST_SQRT_H
 
 float fast_sqrtf(float);
