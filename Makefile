@@ -27,10 +27,10 @@ $(BUILD)libfastsqrt.a: $(BUILD)fast_sqrt.o
 test: setup $(TESTBUILD)link_compile $(TESTBUILD)link_runtime
 
 $(TESTBUILD)link_compile: $(TEST)link_compile.c $(TEST)testMain.h $(BUILD)fast_sqrt.o
-	gcc $(TEST)link_compile.c $(BUILD)fast_sqrt.o -o $@ -lm
+	gcc $(TEST)link_compile.c $(BUILD)fast_sqrt.o -o $@
 
 $(TESTBUILD)link_runtime: $(TEST)link_runtime.c $(TEST)testMain.h $(BUILD)libfastsqrt.so
-	gcc $(TEST)link_runtime.c -o $@ -ldl -lm
+	gcc $(TEST)link_runtime.c -o $@ -ldl
 	cp $(BUILD)libfastsqrt.so $(TESTBUILD)libfastsqrt.so
 
 clean:
