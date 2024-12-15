@@ -14,8 +14,7 @@ Also, magic number must consider that this altorithm uses Newton's approximation
   
   
 I found the optimal magic number via both [mathametical method](https://github.com/awidesky/MyPapers/blob/master/fsqrt/wolframs.txt) and [brute force](https://github.com/awidesky/RangedLoopAsyncTest/blob/fsqrt/fsqrt/main.cpp).
-After I did that in high school, I uploaded some test codes in github a few years later,
-and tried to make a well document about it but forgot about it till today.
+After I did that in high school, I uploaded some test codes in github a few years later, and tried to make a well document about it but forgot about it till today.
 [Here](https://o365inha-my.sharepoint.com/:b:/g/personal/awidesky_office_inha_ac_kr/EXI0-3DdcApPoP6wLM0uWIYBiruQfq8RBREdEVuJY_ddzA?e=1cXQEL) is the note I wrote back when I studied this algorithm.  
 
 
@@ -37,4 +36,5 @@ Just put a positive value in the function and have fun!
 * `make` will print help message.
 * `make build` will build shared and static library into ./build directory.
 * `make test` will build the library and generate test programs into ./testbuild directory.  
+  
 After that, please do `cd testbuild`(so that `./link_runtime` could find it's shared library) and run `./link_compile` or `./link_runtime`
