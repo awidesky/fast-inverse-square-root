@@ -19,6 +19,11 @@ and tried to make a well document about it but forgot about it till today.
 [Here](https://o365inha-my.sharepoint.com/:b:/g/personal/awidesky_office_inha_ac_kr/EXI0-3DdcApPoP6wLM0uWIYBiruQfq8RBREdEVuJY_ddzA?e=1cXQEL) is the note I wrote back when I studied this algorithm.  
 
 
+# Is it 'still' fast?
+Unfortunately, not always.
+In some [cases](https://github.com/awidesky/MyPapers/blob/master/fsqrt/test/iterationtest/code/speed_test.cpp) it's still quite fast, but it can't be faster when compared to native `sqrtss` instruction in SSE.
+
+
 # Usage  
 ```
 float  fast_sqrtf(float);
