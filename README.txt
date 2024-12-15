@@ -1,7 +1,7 @@
 # The Fast Square Root  
 
 This is a fast square root program that was inspired by fast inverse square root from [Quake III arena](https://github.com/id-Software/Quake-III-Arena/blob/master/code/game/q_math.c#L552).
-While it calculates inverse of sqare root, I tried to find best algorithm to get square root.  
+While it calculates inverse of sqare root, I tried to find alternative formula to get square root.  
   
 
 It basically shifts the bit pattern left once, making the exponent roughly half.
@@ -10,7 +10,7 @@ Even though it's technically an Undefined Behavior according to the statndard(se
 it seems working on most cases(tested several versions of gcc/clang/msvc in mac/linux/windows).  
 Then it adds a special magic number to adjust the exponent and mantissa.
 The magic number must consider when exponent field is odd, where the 1 in LSB is moved into the MSB of mantissa.
-Also, magic number must consider that this altorithm uses Newton's approximation method that reduce average error from 1.64% to 0.02%.
+Also, magic number must consider that this altorithm uses Newton's approximation method.
   
   
 I found the optimal magic number via both [mathametical method](https://github.com/awidesky/MyPapers/blob/master/fsqrt/wolframs.txt) and [brute force](https://github.com/awidesky/RangedLoopAsyncTest/blob/fsqrt/fsqrt/main.cpp).
